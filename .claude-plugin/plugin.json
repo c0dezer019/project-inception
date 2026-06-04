@@ -1,0 +1,9 @@
+{
+  "name": "project-inception",
+  "version": "0.1.0",
+  "description": "Guides Claude through project discovery, design, and architecture — producing a README, optional SRS, stack recommendation, ERD, folder structure, and UI/UX handoff prompt. Reentrant for feature integration planning.",
+  "author": {
+    "name": "Brian Blankenship"
+  },
+  "keywords": ["project", "inception", "discovery", "architecture", "design", "devops", "planning"]
+}
