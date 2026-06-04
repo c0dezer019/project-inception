@@ -9,7 +9,7 @@
       "name": "project-inception",
       "source": "./",
       "description": "Guides Claude through project discovery, design, and architecture — producing a README, optional SRS, stack recommendation, ERD, folder structure, and UI/UX handoff prompt. Reentrant for feature integration planning.",
-      "version": "0.1.0",
+      "version": "0.4.0",
       "author": {
         "name": "Brian Blankenship"
       },
