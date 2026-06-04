@@ -1,9 +1,17 @@
 {
   "name": "project-inception",
-  "version": "0.4.0",
-  "description": "Guides Claude through project discovery, design, and architecture — producing a README, optional SRS, stack recommendation, ERD, folder structure, and UI/UX handoff prompt. Reentrant for feature integration planning.",
+  "version": "0.6.0",
+  "description": "Guides a project from inception to architecture through a team of named agents. Jordan leads discovery, Riley leads design, Morgan handles feature integration planning.",
   "author": {
     "name": "Brian Blankenship"
   },
-  "keywords": ["project", "inception", "discovery", "architecture", "design", "devops", "planning"]
+  "keywords": [
+    "project",
+    "inception",
+    "discovery",
+    "architecture",
+    "design",
+    "planning",
+    "agents"
+  ]
 }

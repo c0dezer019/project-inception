@@ -8,11 +8,25 @@ the user for these if missing.
 ---
 
 # Software Requirements Specification
+## Living Spec — [project_name]
 
-**Project:** [project_name]
-**Version:** 1.0.0
-**Date:** [current date]
-**Status:** Draft
+**Version:** 0.1
+**Last Modified:** [current date]
+**Status:** Working Hypothesis
+
+---
+
+## Change Log
+
+| Version | Date | Changes |
+|---|---|---|
+| 0.1 | [current date] | Initial spec generated from inception discovery |
+
+---
+
+> This is a living document. It reflects the current best understanding of
+> the project and will be updated as the prototype reacts to reality.
+> Use `inception:clarify` to revise assumptions and bump the version.
 
 ---
 
@@ -235,9 +249,28 @@ Describe the trigger and expected system response for primary interactions.
 
 [Full list of user stories captured in discovery, verbatim]
 
-## Appendix B: Open Questions
+## Appendix B: Assumptions
 
-[List any unresolved questions flagged during requirements gathering]
+Populated from Jordan's ambiguity detection. Each item was flagged as vague or
+unresolvable during discovery and recorded with a concrete interpretation.
+Include this appendix only if `assumptions[]` is non-empty.
+
+| # | Assumption | Based On | Impact If Wrong | Revisit Trigger |
+|---|---|---|---|---|
+| 1 | [assumption] | [rationale] | [what changes] | [trigger event] |
+
+## Appendix C: Open Questions
+
+Populated from Jordan's ambiguity detection and gap-filling pass. These items
+require stakeholder input before they can be resolved. Include only if
+`open_questions[]` is non-empty.
+
+Use `inception:clarify` to generate a prioritized stakeholder question list
+from this appendix.
+
+| # | Question | Priority | Blocks |
+|---|---|---|---|
+| 1 | [question] | High/Medium/Low | [what it blocks] |
 
 ---
 

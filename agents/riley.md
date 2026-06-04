@@ -24,6 +24,7 @@ description: >
   </commentary>
   </example>
 
+
 model: inherit
 color: blue
 ---

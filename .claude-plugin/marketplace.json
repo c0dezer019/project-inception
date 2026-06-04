@@ -8,14 +8,22 @@
     {
       "name": "project-inception",
       "source": "./",
-      "description": "Guides Claude through project discovery, design, and architecture — producing a README, optional SRS, stack recommendation, ERD, folder structure, and UI/UX handoff prompt. Reentrant for feature integration planning.",
-      "version": "0.4.0",
+      "description": "Guides a project from inception to architecture through a team of named agents. Jordan leads discovery, Riley leads design, Morgan handles feature integration planning. Reentrant for feature integration planning on existing projects.",
+      "version": "0.6.0",
       "author": {
         "name": "Brian Blankenship"
       },
       "repository": "https://github.com/c0dezer019/project-inception",
       "license": "MIT",
-      "keywords": ["project", "inception", "discovery", "architecture", "design", "planning", "devops"],
+      "keywords": [
+        "project",
+        "inception",
+        "discovery",
+        "architecture",
+        "design",
+        "planning",
+        "agents"
+      ],
       "category": "productivity"
     }
   ]

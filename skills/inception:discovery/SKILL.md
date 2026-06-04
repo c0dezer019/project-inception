@@ -291,10 +291,12 @@ Once confirmed, ask for the project name if not already captured:
 
 ### Always generate: README draft
 
-Produce a `README.md` skeleton:
+Produce a `README.md` skeleton framed as the current working hypothesis:
 
 ```markdown
 # [Project Name]
+
+> Working hypothesis — updated as the project evolves.
 
 ## Overview
 [1-2 sentences from problem_statement]
@@ -313,6 +315,9 @@ Produce a `README.md` skeleton:
 
 ## Contributing
 > To be completed by the team.
+
+## Assumptions
+> See the living spec for a full list of inferred requirements and their reasoning.
 ```
 
 ### If needs_srs is true: SRS document
