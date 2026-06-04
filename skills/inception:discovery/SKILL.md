@@ -8,23 +8,36 @@ description: >
   when the user describes a project idea but hasn't established any scope, audience,
   or requirements yet. Run this skill before inception:design.
 metadata:
-  version: "0.1.0"
+  version: "0.3.0"
   phase: "1 of 3"
   next: "inception:design"
 ---
 
 # Project Inception — Phase 1: Discovery
 
-Facilitate a structured discovery session to capture scope, audience, core functions,
-caching needs, and user stories. Produce a README draft and optionally an SRS document.
-Hand off a clean `discovery` context object to Phase 2 (inception:design).
+Facilitate a structured discovery session to capture scope, audience, user stories,
+core features (derived from stories), caching needs, and state complexity. Produce
+a README draft and optionally an SRS document. Hand off a clean `discovery` context
+object to Phase 2 (inception:design).
 
-## Tool Constraint
+**Flow order:** Project shape → Audience & Problem → User Stories → Features (story-driven)
+→ Caching → State complexity flag → SRS check → Review → Output generation.
 
-When using AskUserQuestion, max 4 options per call (plus automatic "Other/Skip").
-For questions with more than 4 choices, present the 4 most common first and follow
-up if "Other" is selected. Never include "None" or "Other" as explicit options —
-these are automatic.
+## Environment Detection
+
+At the start of the session, silently check whether `AskUserQuestion` is available
+as a callable tool in the current environment.
+
+- **If available (Cowork):** use `AskUserQuestion` for all question groups. Max 4
+  options per call. Never include "None" or "Other" as explicit options — these are
+  automatic. Follow up if "Other" is selected.
+- **If not available (Claude Code or other):** present all questions as plain
+  conversational markdown. Format options as a numbered or bulleted list and accept
+  free-text input. Apply the same batching logic — ask grouped questions together
+  in one message rather than one at a time.
+
+All question groups below support both modes. The content and logic are identical
+regardless of environment — only the rendering differs.
 
 ## Discovery Context Object
 
@@ -91,7 +104,7 @@ Show pre-inferred features before Round 1: "Based on '[example]', I've pre-selec
 
 ## Group 1 — Project Shape
 
-Ask all non-inferred questions in one AskUserQuestion call (max 4 questions):
+Ask all non-inferred questions together (one `AskUserQuestion` call in Cowork; one batched message in Claude Code):
 
 **Project Type** (multiSelect) — "What type of application are you building?"
 - Web Application (browser-based frontend)
@@ -122,7 +135,7 @@ If Other → follow up: CLI Tool / Desktop App / free-text.
 
 ## Group 2 — Audience & Problem
 
-Ask as one AskUserQuestion call or free-text prompt:
+Ask as a single prompt (one `AskUserQuestion` call in Cowork; one conversational message in Claude Code):
 
 "Who are the end users of this project, and what problem does it solve for them?"
 
@@ -131,18 +144,51 @@ into the README and SRS.
 
 ---
 
-## Group 3 — Feature Set
+## Group 3 — User Stories
+
+Read `references/user-story-formats.md` before this step.
+
+User stories define what users need — they drive feature selection, not the other
+way around. Gather stories immediately after establishing audience and problem,
+before presenting any feature checklist.
+
+"Would you like to provide user stories, or should I generate them from what
+we've discussed so far?"
+- Generate them for me
+- I'll provide them
+- Skip for now
+
+If generating: produce 5–10 user stories in free-form style based on `audience`
+and `problem_statement`. Prefer free-form narrative over rigid "As a [role]"
+format — see `references/user-story-formats.md` for guidance. Do NOT reference
+features yet — derive stories purely from who the users are and what they need.
+
+If user provides: accept free-text and record as-is.
+
+Show generated stories and ask: "Do these look right? Add, remove, or edit anything?"
+
+Record confirmed stories as `user_stories`.
+
+---
+
+## Group 4 — Feature Set
 
 Always its own dedicated batch. Never merged with other groups.
 
-If `inferred.core_features` is non-empty, show pre-inferred list first:
-> "Based on your description, I've pre-selected: [list]. Does that cover it,
-> or do you want to add/remove anything?"
+Features are derived from user stories first. Scan `user_stories` and extract any
+features clearly implied before presenting the checklist. Pre-select those and show
+them to the user:
+
+> "Based on your user stories, these features seem necessary: [list]. Does that
+> cover it, or do you want to add/remove anything?"
 Give options: "Looks good", "Add more", "Change something."
 
-If empty, present two rounds:
+If `inferred.core_features` is also non-empty (from Step 0 product example), merge
+with story-derived features before presenting.
 
-**Round 1** — "Which features does your project need?"
+After confirming story-derived features, run a "did we miss anything?" pass:
+
+**Round 1** — "Any of these also needed?"
 - Authentication & User Accounts
 - Payments / Billing (subscriptions, one-time)
 - Real-time (live updates, chat, WebSockets)
@@ -154,12 +200,12 @@ If empty, present two rounds:
 - Search (full-text, faceted filters)
 - Admin Dashboard / CMS
 
-After both rounds, ask: "Any custom features not listed?" — record free-text as
-`custom_features` and incorporate throughout.
+Skip any feature already captured from stories. After both rounds, ask:
+"Any custom features not listed?" — record free-text as `custom_features`.
 
 ---
 
-## Group 4 — Caching
+## Group 5 — Caching
 
 Always ask. Never skip. Caching strategy has architectural implications that must
 be surfaced in discovery before design locks anything in.
@@ -176,10 +222,10 @@ the discovery summary — it will heavily shape the design phase.
 
 ---
 
-## Group 5 — State Complexity Flag
+## Group 6 — State Complexity Flag
 
-Only ask if one or more of the following signals are present in `core_features`
-or `custom_features`:
+Only ask if one or more of the following signals are present in `user_stories`,
+`core_features`, or `custom_features`:
 - Real-time collaboration
 - Offline-first sync
 - Multi-step complex flows
@@ -187,34 +233,14 @@ or `custom_features`:
 - Complex multi-user interactions
 
 If signals present, ask:
-"Your feature set suggests potentially complex client state. How would you describe
-the expected UI state complexity?"
+"Your stories and feature set suggest potentially complex client state. How would
+you describe the expected UI state complexity?"
 - Low — mostly server data, minimal UI state
 - Medium — forms, modals, some shared state
 - High — real-time sync, optimistic updates, collaborative editing
 
 Record as `state_complexity`. Do NOT recommend a solution here — flag only.
 If no signals, set `state_complexity: none` and skip.
-
----
-
-## Group 6 — User Stories
-
-Read `references/user-story-formats.md` before this step.
-
-"Would you like to provide user stories, or should I generate them from what
-we've discussed?"
-- Generate them for me
-- I'll provide them
-- Skip for now
-
-If generating: produce 5–10 user stories in free-form style based on `audience`,
-`problem_statement`, and `core_features`. Prefer free-form narrative over rigid
-"As a [role]" format — see `references/user-story-formats.md` for guidance.
-
-If user provides: accept free-text and record as-is.
-
-Show generated stories and ask: "Do these look right? Add, remove, or edit anything?"
 
 ---
 

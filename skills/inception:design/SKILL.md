@@ -21,10 +21,21 @@ Transform discovery findings into concrete architectural decisions. Produce a st
 recommendation, ERD (Mermaid), folder structure recommendation, data flow overview,
 and a UI/UX design handoff prompt.
 
-## Tool Constraint
+## Environment Detection
 
-When using AskUserQuestion, max 4 options per call. Follow up if "Other" is selected.
-Never include "None" or "Other" as explicit options.
+At the start of the session, silently check whether `AskUserQuestion` is available
+as a callable tool in the current environment.
+
+- **If available (Cowork):** use `AskUserQuestion` for all question groups. Max 4
+  options per call. Never include "None" or "Other" as explicit options — these are
+  automatic. Follow up if "Other" is selected.
+- **If not available (Claude Code or other):** present all questions as plain
+  conversational markdown. Format options as a numbered or bulleted list and accept
+  free-text input. Apply the same batching logic — ask grouped questions together
+  in one message rather than one at a time.
+
+All question groups below support both modes. The content and logic are identical
+regardless of environment — only the rendering differs.
 
 ## Design Context Object
 
@@ -66,7 +77,7 @@ a partial `discovery` object and proceed.
 
 ## Group 1 — Hosting & Platform
 
-Ask all non-inferred questions in one AskUserQuestion call:
+Ask all non-inferred questions together (one `AskUserQuestion` call in Cowork; one batched message in Claude Code):
 
 **Hosting** (single) — "Where will this be hosted?"
 - Vercel — serverless, edge-optimized, first-class Next.js
@@ -112,7 +123,7 @@ Ask all non-inferred questions in one AskUserQuestion call:
 
 ## Group 2 — Data Model
 
-Ask in one AskUserQuestion call:
+Ask together (one `AskUserQuestion` call in Cowork; one batched message in Claude Code):
 
 **Data Complexity** (single) — "How complex is your data model?"
 - Simple — flat records, basic CRUD (users, settings, posts)
@@ -131,8 +142,8 @@ Ask in one AskUserQuestion call:
 
 ## Group 3 — API Style & Priorities
 
-Ask in one AskUserQuestion call. Skip API Style if `data_access` does not include
-"Via your own API".
+Ask together (one `AskUserQuestion` call in Cowork; one batched message in Claude Code).
+Skip API Style if `data_access` does not include "Via your own API".
 
 **API Style** (single) — "What's your preferred API style?"
 - REST — familiar, widely supported, easy to test
