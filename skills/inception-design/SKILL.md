@@ -1,5 +1,5 @@
 ---
-name: inception-design
+name: inception:design
 description: >
   This skill should be used after project discovery is complete and the user is ready
   to design the architecture. Trigger phrases include: "design the architecture",
@@ -9,7 +9,7 @@ description: >
   object — if one is not present, prompt the user to run inception-discovery first
   or provide project details manually.
 metadata:
-  version: "0.9.0"
+  version: "0.10.0"
   phase: "2 of 3"
   previous: "inception-discovery"
   next: "inception-feature-plan"

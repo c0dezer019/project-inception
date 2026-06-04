@@ -1,5 +1,5 @@
 ---
-name: inception-clarify
+name: inception:clarify
 description: >
   Assumption refinement tool. Use when the developer wants to revisit, challenge,
   or update inferences Jordan made during discovery. Can be run at any point —
@@ -9,7 +9,7 @@ description: >
   requirements", "update the spec", "Jordan inferred wrong", "I want to change X",
   "the prototype showed something different", "rethink the scope".
 metadata:
-  version: "0.9.0"
+  version: "0.10.0"
 ---
 
 # inception-clarify — Assumption Refinement

@@ -1,5 +1,5 @@
 ---
-name: inception-feature-plan
+name: inception:feature-plan
 description: >
   This skill should be used when the user wants to plan a new feature for an existing
   project that was previously designed with the project-inception plugin. Trigger phrases
@@ -9,7 +9,7 @@ description: >
   to an existing codebase. Expects an existing project — run inception-discovery and
   inception-design first for new projects.
 metadata:
-  version: "0.9.0"
+  version: "0.10.0"
   phase: "3 of 3 (reentrant)"
   previous: "inception-design"
 ---

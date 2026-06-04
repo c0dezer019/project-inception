@@ -1,5 +1,5 @@
 ---
-name: inception-discovery
+name: inception:discovery
 description: >
   This skill should be used when the user wants to start a new project from scratch,
   plan a project, or kick off a development effort. Trigger phrases include: "start a
@@ -8,7 +8,7 @@ description: >
   when the user describes a project idea but hasn't established any scope, audience,
   or requirements yet. Run this skill before inception-design.
 metadata:
-  version: "0.9.0"
+  version: "0.10.0"
   phase: "1 of 3"
   next: "inception-design"
 ---
