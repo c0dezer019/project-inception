@@ -8,7 +8,7 @@ description: >
   when the user describes a project idea but hasn't established any scope, audience,
   or requirements yet. Run this skill before inception-design.
 metadata:
-  version: "0.6.0"
+  version: "0.9.0"
   phase: "1 of 3"
   next: "inception-design"
 ---
@@ -28,9 +28,7 @@ object to Phase 2 (inception-design).
 At the start of the session, silently check whether `AskUserQuestion` is available
 as a callable tool in the current environment.
 
-- **If available (Cowork):** use `AskUserQuestion` for all question groups. Max 4
-  options per call. Never include "None" or "Other" as explicit options — these are
-  automatic. Follow up if "Other" is selected.
+- **If available (Cowork):** use AskUserQuestion for all question groups. Max 4 options per call. Never include "None" or "Other" as explicit options — these are automatic. Follow up if "Other" is selected.
 - **If not available (Claude Code or other):** present all questions as plain
   conversational markdown. Format options as a numbered or bulleted list and accept
   free-text input. Apply the same batching logic — ask grouped questions together
@@ -104,7 +102,7 @@ Show pre-inferred features before Round 1: "Based on '[example]', I've pre-selec
 
 ## Group 1 — Project Shape
 
-Ask all non-inferred questions together (one `AskUserQuestion` call in Cowork; one batched message in Claude Code):
+Ask all non-inferred questions together (AskUserQuestion in Cowork; one batched message in Claude Code):
 
 **Project Type** (multiSelect) — "What type of application are you building?"
 - Web Application (browser-based frontend)
@@ -135,7 +133,7 @@ If Other → follow up: CLI Tool / Desktop App / free-text.
 
 ## Group 2 — Audience & Problem
 
-Ask as a single prompt (one `AskUserQuestion` call in Cowork; one conversational message in Claude Code):
+Ask as a single prompt (AskUserQuestion in Cowork; one conversational message in Claude Code):
 
 "Who are the end users of this project, and what problem does it solve for them?"
 

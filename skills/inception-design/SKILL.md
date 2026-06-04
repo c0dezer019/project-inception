@@ -9,7 +9,7 @@ description: >
   object — if one is not present, prompt the user to run inception-discovery first
   or provide project details manually.
 metadata:
-  version: "0.6.0"
+  version: "0.9.0"
   phase: "2 of 3"
   previous: "inception-discovery"
   next: "inception-feature-plan"
@@ -26,9 +26,7 @@ and a UI/UX design handoff prompt.
 At the start of the session, silently check whether `AskUserQuestion` is available
 as a callable tool in the current environment.
 
-- **If available (Cowork):** use `AskUserQuestion` for all question groups. Max 4
-  options per call. Never include "None" or "Other" as explicit options — these are
-  automatic. Follow up if "Other" is selected.
+- **If available (Cowork):** use AskUserQuestion for all question groups. Max 4 options per call. Never include "None" or "Other" as explicit options — these are automatic. Follow up if "Other" is selected.
 - **If not available (Claude Code or other):** present all questions as plain
   conversational markdown. Format options as a numbered or bulleted list and accept
   free-text input. Apply the same batching logic — ask grouped questions together
@@ -77,7 +75,7 @@ a partial `discovery` object and proceed.
 
 ## Group 1 — Hosting & Platform
 
-Ask all non-inferred questions together (one `AskUserQuestion` call in Cowork; one batched message in Claude Code):
+Ask all non-inferred questions together (AskUserQuestion in Cowork; one batched message in Claude Code):
 
 **Hosting** (single) — "Where will this be hosted?"
 - Vercel — serverless, edge-optimized, first-class Next.js
@@ -123,7 +121,7 @@ Ask all non-inferred questions together (one `AskUserQuestion` call in Cowork; o
 
 ## Group 2 — Data Model
 
-Ask together (one `AskUserQuestion` call in Cowork; one batched message in Claude Code):
+Ask together (AskUserQuestion in Cowork; one batched message in Claude Code):
 
 **Data Complexity** (single) — "How complex is your data model?"
 - Simple — flat records, basic CRUD (users, settings, posts)
@@ -142,7 +140,7 @@ Ask together (one `AskUserQuestion` call in Cowork; one batched message in Claud
 
 ## Group 3 — API Style & Priorities
 
-Ask together (one `AskUserQuestion` call in Cowork; one batched message in Claude Code).
+Ask together (AskUserQuestion in Cowork; one batched message in Claude Code).
 Skip API Style if `data_access` does not include "Via your own API".
 
 **API Style** (single) — "What's your preferred API style?"

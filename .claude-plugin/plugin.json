@@ -1,6 +1,6 @@
 {
   "name": "project-inception",
-  "version": "0.7.0",
+  "version": "0.9.0",
   "description": "Guides a project from inception to architecture through a team of named agents. Jordan leads discovery, Riley leads design, Morgan handles feature integration planning.",
   "author": {
     "name": "Brian Blankenship"

@@ -9,7 +9,7 @@ description: >
   to an existing codebase. Expects an existing project — run inception-discovery and
   inception-design first for new projects.
 metadata:
-  version: "0.6.0"
+  version: "0.9.0"
   phase: "3 of 3 (reentrant)"
   previous: "inception-design"
 ---
