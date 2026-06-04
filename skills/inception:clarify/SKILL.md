@@ -9,7 +9,7 @@ description: >
   requirements", "update the spec", "Jordan inferred wrong", "I want to change X",
   "the prototype showed something different", "rethink the scope".
 metadata:
-  version: "0.5.0"
+  version: "0.6.0"
 ---
 
 # inception:clarify — Assumption Refinement

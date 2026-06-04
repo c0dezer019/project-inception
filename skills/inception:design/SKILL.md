@@ -9,7 +9,7 @@ description: >
   object — if one is not present, prompt the user to run inception:discovery first
   or provide project details manually.
 metadata:
-  version: "0.1.0"
+  version: "0.6.0"
   phase: "2 of 3"
   previous: "inception:discovery"
   next: "inception:feature-plan"

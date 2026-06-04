@@ -8,7 +8,7 @@ description: >
   when the user describes a project idea but hasn't established any scope, audience,
   or requirements yet. Run this skill before inception:design.
 metadata:
-  version: "0.3.0"
+  version: "0.6.0"
   phase: "1 of 3"
   next: "inception:design"
 ---
