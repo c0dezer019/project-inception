@@ -1,17 +1,17 @@
 ---
-name: inception-feature-plan
+name: inception:feature-plan
 description: >
   This skill should be used when the user wants to plan a new feature for an existing
   project that was previously designed with the project-inception plugin. Trigger phrases
   include: "plan a new feature", "add X to the project", "feature planning", "integrate X",
   "I want to add X", "what would it take to add X", "feature inception", "plan feature
   integration". Also triggers when the user describes a new capability they want to add
-  to an existing codebase. Expects an existing project — run inception-discovery and
-  inception-design first for new projects.
+  to an existing codebase. Expects an existing project — run inception:discovery and
+  inception:design first for new projects.
 metadata:
-  version: "0.11.0"
+  version: "0.6.0"
   phase: "3 of 3 (reentrant)"
-  previous: "inception-design"
+  previous: "inception:design"
 ---
 
 # Project Inception — Phase 3: Feature Planning
@@ -102,7 +102,7 @@ and what does it enable them to do?"
 Accept free-text. Use this to generate user stories.
 
 Generate 3–7 user stories for the new feature in free-form style (see
-inception-discovery's user-story-formats.md for guidance if needed).
+inception:discovery's user-story-formats.md for guidance if needed).
 
 Present stories and ask: "Do these capture what you're building? Add, remove,
 or edit anything."
@@ -261,5 +261,5 @@ Artifacts produced:
 Then prompt:
 
 > "Feature plan complete. Development is in your hands from here.
-> Run **inception-feature-plan** again whenever you're ready to plan
+> Run **inception:feature-plan** again whenever you're ready to plan
 > the next feature."

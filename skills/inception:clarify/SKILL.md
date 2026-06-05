@@ -1,5 +1,5 @@
 ---
-name: inception-clarify
+name: inception:clarify
 description: >
   Assumption refinement tool. Use when the developer wants to revisit, challenge,
   or update inferences Jordan made during discovery. Can be run at any point —
@@ -9,10 +9,10 @@ description: >
   requirements", "update the spec", "Jordan inferred wrong", "I want to change X",
   "the prototype showed something different", "rethink the scope".
 metadata:
-  version: "0.11.0"
+  version: "0.6.0"
 ---
 
-# inception-clarify — Assumption Refinement
+# inception:clarify — Assumption Refinement
 
 Revisit and update Jordan's inferences. Update living spec and assumptions log.
 Never a blocker — always an iterator.
@@ -20,7 +20,7 @@ Never a blocker — always an iterator.
 ## Purpose
 
 Jordan infers confidently during discovery to keep momentum. Those inferences
-are working hypotheses, not permanent decisions. inception-clarify is how the
+are working hypotheses, not permanent decisions. inception:clarify is how the
 developer refines those hypotheses as understanding improves — from prototype
 feedback, new research, changed scope, or simply a clearer idea.
 
@@ -73,7 +73,7 @@ Post-build iteration based on what the prototype revealed.
 2. Accept free-text description of the delta
 3. Map each delta back to affected assumptions
 4. Update each one, flag downstream impact
-5. If scope changes are significant, suggest re-running inception-design
+5. If scope changes are significant, suggest re-running inception:design
    for affected sections
 
 ### Mode 4 — Full review
@@ -115,4 +115,4 @@ Downstream impact:   [list of artifacts that may need updating]
 If downstream impact is significant (schema changes, stack changes, folder
 structure changes), prompt:
 > "These changes are significant enough that you may want to re-run
-> inception-design for [affected sections]. Want to do that now?"
+> inception:design for [affected sections]. Want to do that now?"
